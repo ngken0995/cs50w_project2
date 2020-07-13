@@ -1,0 +1,35 @@
+{% extends "auctions/layout.html" %}
+
+{% block head %}
+<style>
+    .flexcontainer {
+            display: flex;
+            align-items: center;
+            border: 1px solid black;
+            margin:5px; 
+            }         
+</style>
+
+{% endblock %}
+
+
+{% block body %}
+    <h2>Active Listings</h2>
+    <ul id="listing">
+        {% for auction in auctions %}
+            <div class="flexcontainer">
+                <div class ="picture">
+                    <a href="{% url 'listing' auction.id %}"><img src={{auction.image}} alt="No Picture"></a>
+                </div>
+                <div class="info">
+                    <ul>
+                        <a href="{% url 'listing' auction.id %}"><li>{{ auction.name }}</li></a>
+                        <li>Price: ${{ auction.price }}</li>
+                        <li>created: {{ auction.created }}</li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

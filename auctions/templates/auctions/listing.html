@@ -1,0 +1,39 @@
+{% extends "auctions/layout.html" %}
+
+{% block head %}
+{% endblock %}
+
+
+{% block body %}
+    <h2>Listing: {{ auction.name }}</h2>
+    {% if not creater %}
+        {% if wishlist %}
+            <div>
+                <a href="">Remove from wishlist</a>
+            </div>
+        {% else %}
+            <div>
+                <a href="{% url 'addWishlist' auction.id%}">Add to wishlist</a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+
+
+    <div>
+        <img src={{auction.image}} alt="No Picture">
+    </div>
+    <div>
+        {{auction.description}}
+    </div>
+    <div>
+        ${{auction.price}}
+    </div>
+    <div>
+        <label>Details</label>
+        <ul>
+            <li>Listed by: {{auction.user}}</li>
+            <li>Category: {{auction.category}}</li>
+        </ul>
+    </div>
+{% endblock %}
